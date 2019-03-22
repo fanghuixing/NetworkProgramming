@@ -136,7 +136,7 @@ int main(int argc, char* argv[])
 	}
 
 	cout << endl << "帧全部解析完成" << endl;
-
+	//关闭文件
 	outfile.close();
 	infile.close();
 
