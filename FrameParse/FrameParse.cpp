@@ -1,16 +1,23 @@
-#include "string.h"
+#include "string"
 #include "fstream"
 #include "iostream"
 
-using namespace std;
 
+using std::cout;
+using std::fstream;
+using std::endl;
+using std::hex;
+using std::dec;
+using std::streampos;
+using std::ios;
+using std::string;
 
 //fstream 对象没有复制构造函数，因此不能执行复制操作，而函数是实参复制给形参，
 //因此我们必须使用引用的方式(&)传递参数
 /**
 打印目的地址或者源地址
 */
-void printAddress(const char * info, fstream& infile) {
+void printAddress(string info, fstream& infile) {
 	cout <<endl<< info;
 	//目的/源地址都有6个字节
 	for (int i = 0; i < 6; i++)
@@ -48,7 +55,7 @@ int main(int argc, char* argv[])
 	}
 
 	bool bframe = true; //是否还有帧需要解析
-	int nframes = 0;//文件中当前读写的字符/字节的相对位置
+	streampos nframes = 0;//文件中当前读写的字符/字节的相对位置
 	int nframenum = 0;//帧序号
 	int nframelen = 0;//数据长度
 
