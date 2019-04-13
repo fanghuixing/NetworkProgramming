@@ -1,6 +1,6 @@
-#include "string"
-#include "fstream"
-#include "iostream"
+#include <string>
+#include <fstream>
+#include <iostream>
 
 
 using std::cout;
@@ -42,17 +42,21 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	fstream outfile; //创建输出文件流
-	outfile.open(argv[2], ios::out | ios::binary); //打开输出文件
+	
 
 	fstream infile; //创建输入文件流
 	infile.open(argv[1], ios::in | ios::binary); //打开输入文件
+
+	
 
 	if (!infile.is_open())
 	{
 		cout << "无法打开输入文件" << endl;
 		return 1;
 	}
+
+	fstream outfile; //创建输出文件流
+	outfile.open(argv[2], ios::out | ios::binary); //打开输出文件
 
 	bool bframe = true; //是否还有帧需要解析
 	streampos nframes = 0;//文件中当前读写的字符/字节的相对位置
