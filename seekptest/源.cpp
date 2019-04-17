@@ -13,11 +13,11 @@ int main()
 	string s = "hello, world";
 	os.write("hello, world", 12);
 	os.seekp(7);
-	os << 'W';
+	os.put('W');
 	os.seekp(0, ios::end);
-	os << '!';
+	os.put('!');
 	os.seekp(0);
-	os << 'H';
+	os.put('H');
 
 	char * str = new char[13];
 	os.seekg(0, ios::beg);
