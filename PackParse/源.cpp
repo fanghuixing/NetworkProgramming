@@ -92,9 +92,11 @@ void main(int argc, char * argv[])
 
 	//Ìî³äsockaddr_in
 	sockaddr_in host_addr;
-	host_addr.sin_addr = *(in_addr *)pHostIP->h_addr_list[0];
+	host_addr.sin_addr = *(in_addr *)pHostIP->h_addr_list[2];
 	host_addr.sin_family = AF_INET;
 	host_addr.sin_port = htons(6000);
+
+	
 
 	//°ó¶¨±¾µØÍø¿¨
 	if (bind(sock, (PSOCKADDR) &host_addr, sizeof(host_addr)) == SOCKET_ERROR)
