@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PackParse", "PackParse\Pack
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pack", "Pack\Pack.vcxproj", "{CA79F1B2-F2AD-4F61-8E61-F0D9CCAF2DE6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PackFrag", "PackFrag\PackFrag.vcxproj", "{95AEACF3-8930-495A-AC9E-55C82650C0AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +123,14 @@ Global
 		{CA79F1B2-F2AD-4F61-8E61-F0D9CCAF2DE6}.Release|x64.Build.0 = Release|x64
 		{CA79F1B2-F2AD-4F61-8E61-F0D9CCAF2DE6}.Release|x86.ActiveCfg = Release|Win32
 		{CA79F1B2-F2AD-4F61-8E61-F0D9CCAF2DE6}.Release|x86.Build.0 = Release|Win32
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Debug|x64.ActiveCfg = Debug|x64
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Debug|x64.Build.0 = Debug|x64
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Debug|x86.ActiveCfg = Debug|Win32
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Debug|x86.Build.0 = Debug|Win32
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Release|x64.ActiveCfg = Release|x64
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Release|x64.Build.0 = Release|x64
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Release|x86.ActiveCfg = Release|Win32
+		{95AEACF3-8930-495A-AC9E-55C82650C0AE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
