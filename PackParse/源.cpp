@@ -92,7 +92,7 @@ void main(int argc, char * argv[])
 
 	//填充sockaddr_in
 	sockaddr_in host_addr;
-	host_addr.sin_addr = *(in_addr *)pHostIP->h_addr_list[2];
+	host_addr.sin_addr = *(in_addr *)pHostIP->h_addr_list[0];
 	host_addr.sin_family = AF_INET;
 	host_addr.sin_port = htons(6000);
 
@@ -132,15 +132,16 @@ void main(int argc, char * argv[])
 			cout << "头部长度：" << ((ip.HeadLen & 0x0f) * 4) << endl;
 			cout << "服务器类型：Priority " << (ip.ServiceType >> 5)
 				<< ", Service " << ((ip.ServiceType >> 1) & 0x0f) << endl;
-			cout << "总长度：" << ip.TotalLen << endl;
-			cout << "标识符：" << ip.Identifier << endl;
+			cout << "总长度：" << ntohs(ip.TotalLen) << endl;
+			cout << "标识符：" << ntohs(ip.Identifier) << endl;
+			ip.Flags = ntohs(ip.Flags);
 			cout << "标志位：" << ((ip.Flags >> 15) & 0x01) << ", DF="
 				<< ((ip.Flags >> 14) & 0x01) << ", MF=" << ((ip.Flags >> 13) & 0x01)
 				<< endl;
 			cout << "片偏移：" << (ip.FragOffset & 0x1fff) << endl;
 			cout << "生存周期：" << (int)ip.TimeToLive << endl;
 			cout << "协议：Protocol " << (int)ip.Protocol << endl;
-			cout << "头部校验和：" << ip.HeadChecksum << endl;
+			cout << "头部校验和：" << ntohs(ip.HeadChecksum) << endl;
 			cout << "源IP地址：" << inet_ntoa( * (in_addr *) &ip.SourceAddr  ) << endl;
 			cout << "目的IP地址：" << inet_ntoa(*(in_addr *)&ip.DestinAddr) << endl;
 		}

@@ -114,6 +114,7 @@ void main(int argc, char * argv[])
 			//设置标志为001，低字节存放偏移量
 			ip.Flags = unsigned short( ((frag_num-1)*10) | 0x2000);
 		}
+		ip.Flags = htons(ip.Flags);
 
 		//处理IP头部其他字段
 
@@ -121,11 +122,11 @@ void main(int argc, char * argv[])
 		ip.Version = (0x04 << 4 | sizeof(ip_head) / sizeof(unsigned int));
 		ip.ServiceType = unsigned char(0x00);
 		//分片数据长度+IP头长度
-		ip.TotalLen = unsigned short(frag_data_length + 20); 
-		ip.Identifier = unsigned short(0x1000);
+		ip.TotalLen = htons( unsigned short(frag_data_length + 20)); 
+		ip.Identifier = htons(unsigned short(0x1000));
 		ip.TimeToLive = unsigned char(0x80); //128
 		ip.Protocol = unsigned char(0x06); //tcp
-		ip.HeadChecksum = unsigned short(0x00); //初始校验和置0
+		ip.HeadChecksum = htons(unsigned short(0x00)); //初始校验和置0
 		ip.SourceAddr = unsigned int(0x3801a8c0);
 		ip.DestinAddr = unsigned int(0x3502a8c0);
 
@@ -135,15 +136,17 @@ void main(int argc, char * argv[])
 		memcpy(check, &ip, 20);
 
 		//计算IP头部校验和
-		ip.HeadChecksum = checksum(check, 20);
+		ip.HeadChecksum = htons(checksum(check, 20));
 
-		cout << "总长度：" << ip.TotalLen << endl;
-		cout << "标识符：" << ip.Identifier << endl;
-		cout << "标志位：" << ((ip.Flags >> 15) & 0x01)
-			<< ", DF=" << ((ip.Flags >> 14) & 0x01)
-			<< ", MF=" << ((ip.Flags >> 13) & 0x01) << endl;
-		cout << "片偏移：" << (ip.FragOffset & 0x1fff) << "(8B)" << endl;
-		cout << "头部校验和：" << ip.HeadChecksum << endl;
+		cout << "总长度：" << ntohs(ip.TotalLen) << endl;
+		cout << "标识符：" << ntohs(ip.Identifier) << endl;
+		unsigned short Flags = ntohs(ip.Flags);
+		unsigned short FragOffset = Flags;
+		cout << "标志位：" << ((Flags >> 15) & 0x01)
+			<< ", DF=" << ((Flags >> 14) & 0x01)
+			<< ", MF=" << ((Flags >> 13) & 0x01) << endl;
+		cout << "片偏移：" << (FragOffset & 0x1fff) << "(8B)" << endl;
+		cout << "头部校验和：" << ntohs( ip.HeadChecksum) << endl;
 
 		//将20字节的ip头部写入输出文件中
 		outfile.write((char*)&ip, 20);
