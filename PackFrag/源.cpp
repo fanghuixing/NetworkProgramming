@@ -128,7 +128,7 @@ void main(int argc, char * argv[])
 		ip.Identifier = htons(unsigned short(0x1000));
 		ip.TimeToLive = unsigned char(0x80); //128
 		ip.Protocol = unsigned char(0x06); //tcp
-		ip.HeadChecksum = htons(unsigned short(0x00)); //初始校验和置0
+		ip.HeadChecksum = unsigned short(0x00); //初始校验和置0
 		ip.SourceAddr = unsigned int(0x3801a8c0);
 		ip.DestinAddr = unsigned int(0x3502a8c0);
 
@@ -138,7 +138,7 @@ void main(int argc, char * argv[])
 		memcpy(check, &ip, 20);
 
 		//计算IP头部校验和
-		ip.HeadChecksum = htons(checksum(check, 20));
+		ip.HeadChecksum = checksum(check, 20);
 
 		cout << "总长度：" << ntohs(ip.TotalLen) << endl;
 		cout << "标识符：" << ntohs(ip.Identifier) << endl;

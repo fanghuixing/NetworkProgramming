@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch8Ipv6Encap", "ch-8-Ipv6En
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch-9-ScanHost", "Ch-9-ScanHost\Ch-9-ScanHost.vcxproj", "{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HeadChecksum", "HeadChecksum\HeadChecksum.vcxproj", "{66A30A34-6546-4442-A88B-4436FCA23A9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -151,6 +153,14 @@ Global
 		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x64.Build.0 = Release|x64
 		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x86.ActiveCfg = Release|Win32
 		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x86.Build.0 = Release|Win32
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Debug|x64.ActiveCfg = Debug|x64
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Debug|x64.Build.0 = Debug|x64
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Debug|x86.ActiveCfg = Debug|Win32
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Debug|x86.Build.0 = Debug|Win32
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Release|x64.ActiveCfg = Release|x64
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Release|x64.Build.0 = Release|x64
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Release|x86.ActiveCfg = Release|Win32
+		{66A30A34-6546-4442-A88B-4436FCA23A9C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

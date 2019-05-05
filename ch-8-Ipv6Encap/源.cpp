@@ -222,7 +222,7 @@ void main(int argc, char * argv[])
 	memcpy(check + sizeof(psd_head) + sizeof(tcp_head), tcp_data, sizeof(tcp_data));
 
 	tcp.TcpChecksum = checksum(check, sizeof(psd_head) + sizeof(tcp_head) + sizeof(tcp_data));
-	tcp.TcpChecksum = htons(tcp.TcpChecksum);
+	
 	
 	//依次写入IP头、TCP头与数据
 	outfile.seekp(0);
