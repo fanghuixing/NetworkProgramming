@@ -141,7 +141,7 @@ void main(int argc, char * argv[])
 			cout << "片偏移：" << (ip.FragOffset & 0x1fff) << endl;
 			cout << "生存周期：" << (int)ip.TimeToLive << endl;
 			cout << "协议：Protocol " << (int)ip.Protocol << endl;
-			cout << "头部校验和：" << ntohs(ip.HeadChecksum) << endl;
+			cout << "头部校验和：" << ip.HeadChecksum << endl;
 			cout << "源IP地址：" << inet_ntoa( * (in_addr *) &ip.SourceAddr  ) << endl;
 			cout << "目的IP地址：" << inet_ntoa(*(in_addr *)&ip.DestinAddr) << endl;
 		}

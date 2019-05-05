@@ -148,7 +148,7 @@ void main(int argc, char * argv[])
 			<< ", DF=" << ((Flags >> 14) & 0x01)
 			<< ", MF=" << ((Flags >> 13) & 0x01) << endl;
 		cout << "片偏移：" << (FragOffset & 0x1fff) << "(8B)" << endl;
-		cout << "头部校验和：" << ntohs( ip.HeadChecksum) << endl;
+		cout << "头部校验和：" <<  ip.HeadChecksum << endl;
 
 		//将20字节的ip头部写入输出文件中
 		outfile.write((char*)&ip, 20);
