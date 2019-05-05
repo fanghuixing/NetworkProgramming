@@ -51,11 +51,13 @@ size： 参加运算的IP头部总字节数量
 unsigned short checksum(unsigned short * buffer, int size)
 {
 	unsigned long sum = 0;
-	while (size > 0) {
+	while (size > 1) {
 		sum = sum + (*buffer);
 		buffer++;
 		size = size - sizeof(unsigned short);
 	}
+	if (size)
+		sum = sum + *(unsigned char *)buffer;
 	while ((sum >> 16) != 0) {
 		sum = (sum >> 16) + (sum & 0xffff);
 	}

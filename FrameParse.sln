@@ -27,7 +27,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pack", "Pack\Pack.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PackFrag", "PackFrag\PackFrag.vcxproj", "{95AEACF3-8930-495A-AC9E-55C82650C0AE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch-8-Ipv6Encap", "ch-8-Ipv6Encap\ch-8-Ipv6Encap.vcxproj", "{4C942BFD-298F-412E-B4D5-3DF1DB183517}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch8Ipv6Encap", "ch-8-Ipv6Encap\ch-8-Ipv6Encap.vcxproj", "{4C942BFD-298F-412E-B4D5-3DF1DB183517}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch-9-ScanHost", "Ch-9-ScanHost\Ch-9-ScanHost.vcxproj", "{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,14 @@ Global
 		{4C942BFD-298F-412E-B4D5-3DF1DB183517}.Release|x64.Build.0 = Release|x64
 		{4C942BFD-298F-412E-B4D5-3DF1DB183517}.Release|x86.ActiveCfg = Release|Win32
 		{4C942BFD-298F-412E-B4D5-3DF1DB183517}.Release|x86.Build.0 = Release|Win32
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Debug|x64.ActiveCfg = Debug|x64
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Debug|x64.Build.0 = Debug|x64
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Debug|x86.ActiveCfg = Debug|Win32
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Debug|x86.Build.0 = Debug|Win32
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x64.ActiveCfg = Release|x64
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x64.Build.0 = Release|x64
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x86.ActiveCfg = Release|Win32
+		{FFB5FF5D-3EA3-45F4-8BB6-AD98C38DA29C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

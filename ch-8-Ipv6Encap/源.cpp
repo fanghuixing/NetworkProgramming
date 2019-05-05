@@ -78,11 +78,13 @@ const char tcp_data[] = { "This is a test of ipv6 packet encapsule!" };
 unsigned short checksum(unsigned short * buffer, int size)
 {
 	unsigned long sum = 0;
-	while (size > 0) {
+	while (size > 1) {
 		sum = sum + (*buffer);
 		buffer++;
 		size = size - sizeof(unsigned short);
 	}
+	if (size)
+		sum = sum + *(unsigned char *)buffer;
 	while ((sum >> 16) != 0) {
 		sum = (sum >> 16) + (sum & 0xffff);
 	}
