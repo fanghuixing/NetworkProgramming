@@ -148,5 +148,5 @@ void main(int argc, char * argv[])
 	}
 	//关闭原始套接字
 	closesocket(sock);
-	WSACleanup();//写作Winsock DLL
+	WSACleanup();//卸载Winsock DLL，释放资源
 }
