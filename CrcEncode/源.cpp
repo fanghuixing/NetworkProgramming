@@ -8,6 +8,7 @@ using std::endl;
 using std::fstream;
 using std::hex;
 using std::dec;
+
 /*
 ch-4, Ethernet 帧校验程序
 */
@@ -20,7 +21,13 @@ int main(int argc, char * argv[])
 	}
 
 	fstream outfile;  //创建输出文件流
-	outfile.open(argv[1], ios::out | ios::binary); //打开输出文件
+	//注意ios::in不能省略，因为我们需要从文件中读取数据
+	outfile.open(argv[1], 
+		ios::in |
+		ios::out |
+		ios::binary | 
+		ios::trunc); //打开输出文件
+
 	for (int i = 0; i < 7; i++)                    //写入7B前导码
 	{
 		outfile.put(char(0xaa));        
@@ -38,13 +45,30 @@ int main(int argc, char * argv[])
 	int total = int(outfile.tellp()) - pos_destination_addr;   //CRC校验范围的字节数
 	outfile.seekg(pos_destination_addr, ios::beg);   //文件（读）指针指向目的地址
 	unsigned char crc = 0;                      //初始化CRC余数为0
+	CalculateCRCValue(total, outfile, crc);	
+
+	outfile.seekp(pos_crc, ios::beg);     //文件（写）指针移动到帧校验字段
+	outfile.put(crc);
+	cout <<endl<< "帧校验字段："<<hex << (int)crc << dec << "(" << (int)crc << ")" << endl;		
+	cout << endl << "帧封装与CRC校验完成" << endl;
+	outfile.close();
+
+	return 0;
+}
+
+void CalculateCRCValue(int total, std::fstream &outfile, unsigned char &crc)
+{
+	//cout<<"校验范围内数据：";
 	bool xorflag = false;						//是否进行异或运算的标志
-	while (total--)
+	while (total-->0)
 	{
 		char temp;
 		outfile.get(temp);   //每次读取一个字节
-
-		for (unsigned char i = (unsigned char) 0x80; i > 0; i>>=1)
+		//输出校验范围内原始数据，16进制格式
+		//右对齐输出，大写，2位宽度，不足的前补0
+		//printf("%02X ", unsigned char(temp));
+		
+		for (unsigned char i = (unsigned char)0x80; i > 0; i >>= 1)
 		{
 			xorflag = false;
 			if (crc & 0x80) {
@@ -53,17 +77,9 @@ int main(int argc, char * argv[])
 			MoveNewBitToCrc(crc, temp, i);
 			if (xorflag) {
 				crc ^= 0x07;
-			}					
+			}
 		}
 	}
-
-	outfile.seekp(pos_crc, ios::beg);     //文件（写）指针移动到帧校验字段
-	outfile.put(crc);
-	cout << "帧校验字段："<<hex << (int)crc << dec << "(" << (int)crc << ")" << endl;		
-	cout << endl << "帧封装与CRC校验完成" << endl;
-	outfile.close();
-
-	return 0;
 }
 
 /**
