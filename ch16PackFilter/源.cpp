@@ -3,7 +3,7 @@
 #include <ws2tcpip.h>
 using std::cout;
 using std::endl;
-
+using std::hex;
 #pragma comment(lib, "ws2_32")
 #define IO_RCVALL _WSAIOW(IOC_VENDOR, 1)
 #define PERMIT_OPT 0  //定义过滤操作
@@ -54,6 +54,9 @@ typedef struct
 	bool Operation; //操作类型
 }filter_table;
 
+
+
+
 void main(int argc, char * argv[])
 {
 	if (argc != 2)
@@ -78,8 +81,11 @@ void main(int argc, char * argv[])
 		return;
 	}
 
+
+
+	
 	BOOL flag = true;
-	//设置IP头操作选项
+///设置IP头操作选项
 	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (char *)&flag, sizeof(flag)) == SOCKET_ERROR)
 	{
 		cout << endl << "setcockopt操作失败" << endl;
@@ -158,6 +164,7 @@ void main(int argc, char * argv[])
 	int i = 0;
 	while (i < packsum)
 	{
+		memset(buffer, 0, 65535);
 		if (recv(sock, buffer, 65535, 0) > 0)
 		{
 			ip_head ip = *(ip_head*)buffer;
@@ -168,14 +175,13 @@ void main(int argc, char * argv[])
 			memset(source_ip, 0, 16);
 			//从ip头部中取出源ip地址存入source_ip
 			memcpy(source_ip, inet_ntoa(*(in_addr*)&ip.SourceAddr), addrlen);
-
+			
 			//获取目的IP地址
 			addrlen = strlen(inet_ntoa(*(in_addr*)&ip.DestinAddr));
 			char destin_ip[16];
 			memset(destin_ip, 0, 16);
 			//从ip头部中取出目的ip地址存入destin_ip
-			memcpy(destin_ip, inet_ntoa(*(in_addr*)&ip.DestinAddr), addrlen);
-
+			memcpy(destin_ip, inet_ntoa(*(in_addr*)&ip.DestinAddr), addrlen);					
 
 			//检验包过滤规则1
 			//比较IP包中的源IP地址与规则中的源IP地址
@@ -214,3 +220,4 @@ void main(int argc, char * argv[])
 	closesocket(sock);
 	WSACleanup();//卸载Winsock DLL，释放资源
 }
+
